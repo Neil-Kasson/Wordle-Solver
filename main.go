@@ -18,6 +18,7 @@ func init(){
 		words = append(words, scanner.Text())
 	}
 	slices.Sort(words)
+	fmt.Print("\n")
 }
 
 func main(){
@@ -57,7 +58,14 @@ func main(){
 		fmt.Print("\nWould you like to see the ", len(words), " possible answers? (y/n): ")
 		fmt.Scanln(&temp1)
 		if(temp1 == "y"){
-			fmt.Println("\n", words)
+			output := ""
+			for i, w := range words{
+				if (i%10 == 0){
+					output += "\n"
+				}
+				output += w + "\t"
+			}
+			fmt.Println(output)
 		}
 
 		// Prompt to enter another word
