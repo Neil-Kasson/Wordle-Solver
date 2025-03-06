@@ -18,7 +18,6 @@ func init(){
 		words = append(words, scanner.Text())
 	}
 	slices.Sort(words)
-	fmt.Print("\n")
 }
 
 func main(){
@@ -30,9 +29,9 @@ func main(){
 	var goodLetters = ""
 
 	for again{
-		fmt.Print("What word did you enter? ")
+		fmt.Print("\nWhat word did you enter? ")
 		fmt.Scanln(&guess)
-		fmt.Printf("Using the following, what colors were each letter?\n green  ->  +\n yellow ->  -\n grey   ->  *\n%s\n", guess)
+		fmt.Printf("\nUsing the following, what colors were each letter?\n green  ->  +\n yellow ->  -\n grey   ->  *\n%s\n", guess)
 		fmt.Scanln(&pattern)
 
 		// Remove impossible words
