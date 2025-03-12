@@ -21,6 +21,7 @@ func init(){
 }
 
 func main(){
+	// Declaring some variables to use later
 	var again = true
 	var guess = ""
 	var pattern = ""
@@ -28,7 +29,10 @@ func main(){
 	var temp2 = ""
 	var goodLetters = ""
 
+	// Loop to prompt/enter/check each word
 	for again{
+
+		// Prompts for word and placecemnt of letter correctness
 		fmt.Print("\nWhat word did you enter? ")
 		fmt.Scanln(&guess)
 		fmt.Printf("\nUsing the following, what colors were each letter?\n green  ->  +\n yellow ->  -\n grey   ->  *\n%s\n", guess)
@@ -36,17 +40,17 @@ func main(){
 
 		// Remove impossible words
 		for i:=0; i<5; i++{
-			if(string(pattern[i]) == "+"){
+			if(string(pattern[i]) == "+"){											// Green letters
 				words = slices.DeleteFunc(words, func(s string) bool{
 					return !(string(s[i]) == string(guess[i]))
 				})
 				goodLetters += string(guess[i])
-			} else if(string(pattern[i]) == "-"){
+			} else if(string(pattern[i]) == "-"){								// Yellow letters
 				words = slices.DeleteFunc(words, func(s string) bool{
 					return (!strings.Contains(s, string(guess[i]))) || (string(s[i]) == string(guess[i]))
 				})
 				goodLetters += string(guess[i])
-			} else if(string(pattern[i]) == "*"){
+			} else if(string(pattern[i]) == "*"){								// Grey letters
 				words = slices.DeleteFunc(words, func(s string) bool{
 					return strings.Contains(s, string(guess[i])) && !strings.Contains(goodLetters, string(guess[i]))
 				})
@@ -73,6 +77,11 @@ func main(){
 		if(temp2 == "n"){
 			again = false
 		}
+
+		// I know these last 2 prompt sections don't account for incorrect entries, 
+		// but it accomplishes the main functionality I entended it to... 
+		// it'll show the list if you type 'y', or not if you don't
+		// and exit the program if you type 'n' in the 2nd prompt, or repeat if not.
 
 	}
 	// End of for loop
